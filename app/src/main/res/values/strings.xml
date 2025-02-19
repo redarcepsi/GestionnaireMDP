@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Gestionnaire de mot de passe</string>
+    <string name="Connexion">Connexion</string>
+    <string name="connexion_ok">Connexion réussie</string>
+    <string name="copyicon">CopyIcon</string>
+</resources>
