@@ -6,9 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
-    foreignKeys = arrayOf(
-        ForeignKey(entity = User::class, parentColumns =  arrayOf("userId"), childColumns =  arrayOf("userId"))
-    )
+    foreignKeys = [ForeignKey(entity = User::class, parentColumns =  arrayOf("userId"), childColumns =  arrayOf("userId"))]
 )
 data class AccountList(
     @PrimaryKey(autoGenerate = true) val accountId: Int = 0,

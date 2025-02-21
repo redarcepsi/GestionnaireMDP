@@ -75,29 +75,29 @@ class Adapter(private val context: HomeActivity, private var accounts: Array<Acc
         }
         val holder = initHolder(cv!!)
         val account = accounts[position]
-        val icon = cv.findViewById<ImageView>(R.id.ivCopyIcon)
-        val modifyButton = cv.findViewById<LinearLayout>(R.id.carte)
+        val icon = cv.findViewById<ImageView>(R.id.ivCopyIcon)//ImageView pour copié le mot de passe
+        val modifyButton = cv.findViewById<LinearLayout>(R.id.carte)// LinearLayout pour rendre toute la carte cliquable pour modification
 
         holder.tvSiteName.text=account.site
-        // icon pour copié le bouton
+        // icon pour copié le mot de passe
         icon.setOnClickListener{
             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText("Texte copié", account.mdp)
             clip.apply {
                 description.extras = PersistableBundle().apply {
-                    putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true)
+                    putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true)// extra_is_sensitive permet de caché le mot de passe au moment de l'affichage sur l'écran
                 }
             }
             clipboard.setPrimaryClip(clip)
             Toast.makeText(context, "Texte copié dans le presse-papiers !", Toast.LENGTH_SHORT).show()
         }
-        // bouton modification
+        // setOnClickListener pour l'AlertDialog pour modifier un compte
         modifyButton.setOnClickListener {
             // Create an alert builder
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Modifier un compte")
 
-            // set the custom layout
+            // set la layout à utiliser (custom_layout.xml)
             val customLayout: View = inflater!!.inflate(R.layout.custom_layout, null)
             builder.setView(customLayout)
 
@@ -106,18 +106,21 @@ class Adapter(private val context: HomeActivity, private var accounts: Array<Acc
             val editTextSite: EditText = customLayout.findViewById(R.id.editTextSite)
             val editTextMdp: EditText = customLayout.findViewById(R.id.editTextMdp)
 
+            // prérempli les EditText avec les informations du la carte cliqué.
             editTextEmail.text = Editable.Factory.getInstance().newEditable(account.email)
             editTextSite.text = Editable.Factory.getInstance().newEditable(account.site)
             editTextMdp.text = Editable.Factory.getInstance().newEditable(account.mdp)
 
-            // add a button
+            // ajoute le bouton ok, qui vérifie si les champs sont rempli et après save en bdd
             builder.setPositiveButton("OK") { _: DialogInterface?, _: Int ->
 
-                //save en bdd
+                //vérifie si les champs ne sont pas nul, sinon ne fait pas la sauvegarde
                 if (editTextEmail.text.toString().isNotEmpty() && editTextMdp.text.toString().isNotEmpty() && editTextSite.text.toString().isNotEmpty()) {
+                    // edit des informations, de l'objet, actuelles de l'adapter
                     account.mdp=editTextMdp.text.toString().trim()
                     account.site=editTextSite.text.toString().trim()
                     account.email=editTextEmail.text.toString().trim()
+                    // update en utilisant l'objet de l'adapter
                     CoroutineScope(Dispatchers.IO).launch {
                         (context.applicationContext as UserDataApplication).database.AccountDao().updateaccount(
                             account.email,
@@ -130,28 +133,31 @@ class Adapter(private val context: HomeActivity, private var accounts: Array<Acc
                     Toast.makeText(context, "un ou plusieurs champs est vide", Toast.LENGTH_LONG).show()
                 }
             }
+            // ajout du bouton pour cancel
             builder.setNegativeButton("Cancel"){
                     dialog,_->
                 dialog.cancel()
             }
+            // ajout du bouton pour supprimer un compte
             builder.setNeutralButton("Delete"){
                 dialog,_->
                 CoroutineScope(Dispatchers.IO).launch {
                     (context.applicationContext as UserDataApplication).database.AccountDao().deleteaccount(
                         account.accountId
                     )
-                    context.loadData()
+                    context.loadData()//update l'adapter
                 }
 
                 dialog.cancel()
             }
-            // create and show the alert dialog
 
+            // ajoute un setOnClickListener sur le bouton dans custom_layout.xml pour générer un mot de passe
             val generateur = customLayout.findViewById<ImageButton>(R.id.iconGenerateur)
             generateur.setOnClickListener{
                 editTextMdp.text = Editable.Factory.getInstance().newEditable(Utils.generateur())
             }
 
+            // create and show the alert dialog
             val dialog = builder.create()
             dialog.show()
         }

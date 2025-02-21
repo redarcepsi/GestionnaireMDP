@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Epsi1" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
@@ -14,8 +14,5 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/black</item>
         <item name="colorSurface">@color/blue</item>
-    </style>
-    <style name="CustomCardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/light_gray</item>
     </style>
 </resources>

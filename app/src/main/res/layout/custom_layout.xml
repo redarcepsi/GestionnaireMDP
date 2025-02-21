@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:paddingLeft="20dp"
     android:paddingRight="20dp">
-
+    <!--design pour l'alertDialog qui sert à modifier et/ou ajouter un compte-->
     <Space
         android:layout_width="match_parent"
         android:layout_height="15dp"/>
