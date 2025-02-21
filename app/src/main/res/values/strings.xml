@@ -7,4 +7,11 @@
     <string name="sitetitle">Site :</string>
     <string name="mdptitle">Mot de passe :</string>
     <string name="emailtitle">Email :</string>
+    <string name="site_input">Site input</string>
+    <string name="mdp_input">Mot de passe input</string>
+    <string name="email_input">Email Input</string>
+    <string name="email_hint">example@ecoles-epsi.net</string>
+    <string name="mdp">mot de passe</string>
+    <string name="site_hint">adresse ou nom du site</string>
+    <string name="icon_mdp">Image generation mot de passe</string>
 </resources>

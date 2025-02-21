@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -145,6 +146,12 @@ class Adapter(private val context: HomeActivity, private var accounts: Array<Acc
                 dialog.cancel()
             }
             // create and show the alert dialog
+
+            val generateur = customLayout.findViewById<ImageButton>(R.id.iconGenerateur)
+            generateur.setOnClickListener{
+                editTextMdp.text = Editable.Factory.getInstance().newEditable(Utils.generateur())
+            }
+
             val dialog = builder.create()
             dialog.show()
         }

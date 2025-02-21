@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
@@ -16,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.epsi1.Adapter
 import com.example.epsi1.R
 import com.example.epsi1.UserDataApplication
+import com.example.epsi1.Utils
 import com.example.epsi1.model.AccountList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -51,13 +53,13 @@ class HomeActivity : AppCompatActivity() {
             val customLayout: View = layoutInflater.inflate(R.layout.custom_layout, null)
             builder.setView(customLayout)
 
+            val editTextEmail: EditText = customLayout.findViewById(R.id.editTextEmail)
+            val editTextSite: EditText = customLayout.findViewById(R.id.editTextSite)
+            val editTextMdp: EditText = customLayout.findViewById(R.id.editTextMdp)
 
             // add a button
             builder.setPositiveButton("OK") { _: DialogInterface?, _: Int ->
                 // send data from the AlertDialog to the Activity
-                val editTextEmail: EditText = customLayout.findViewById(R.id.editTextEmail)
-                val editTextSite: EditText = customLayout.findViewById(R.id.editTextSite)
-                val editTextMdp: EditText = customLayout.findViewById(R.id.editTextMdp)
 
                 if (editTextEmail.text.toString().isNotEmpty() && editTextMdp.text.toString().isNotEmpty() && editTextSite.text.toString().isNotEmpty()) {
                     val newAccount = AccountList(
@@ -80,6 +82,11 @@ class HomeActivity : AppCompatActivity() {
             builder.setNegativeButton("Cancel"){
                     dialog,_->
                 dialog.cancel()
+            }
+
+            val generateur = customLayout.findViewById<ImageButton>(R.id.iconGenerateur)
+            generateur.setOnClickListener{
+                editTextMdp.text = Editable.Factory.getInstance().newEditable(Utils.generateur())
             }
             // create and show the alert dialog
             val dialog = builder.create()

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,9 +16,12 @@
         android:text="@string/sitetitle"
         android:textSize="20sp"/>
     <EditText
+        android:inputType="text"
         android:id="@+id/editTextSite"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="50dp"
+        tools:ignore="Autofill,VisualLintTextFieldSize"
+        android:hint="@string/site_hint" />
     <Space
         android:layout_width="match_parent"
         android:layout_height="15dp"/>
@@ -26,10 +30,26 @@
         android:layout_height="wrap_content"
         android:text="@string/mdptitle"
         android:textSize="20sp"/>
-    <EditText
-        android:id="@+id/editTextMdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:inputType="textVisiblePassword"
+            android:id="@+id/editTextMdp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            tools:ignore="Autofill,VisualLintTextFieldSize"
+            android:hint="@string/mdp"/>
+        <ImageButton
+            android:src="@drawable/outline_change_circle_24"
+            android:id="@+id/iconGenerateur"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/icon_mdp"
+            android:background="#424242"/>
+    </RelativeLayout>
     <Space
         android:layout_width="match_parent"
         android:layout_height="15dp"/>
@@ -39,7 +59,10 @@
         android:text="@string/emailtitle"
         android:textSize="20sp"/>
     <EditText
+        android:inputType="textWebEmailAddress"
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="50dp"
+        tools:ignore="Autofill,VisualLintTextFieldSize"
+        android:hint="@string/email_hint"/>
 </LinearLayout>
