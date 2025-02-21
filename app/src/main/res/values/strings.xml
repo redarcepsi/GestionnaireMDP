@@ -14,4 +14,8 @@
     <string name="mdp">mot de passe</string>
     <string name="site_hint">adresse ou nom du site</string>
     <string name="icon_mdp">Image generation mot de passe</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="identifiant">Identifiant</string>
+    <string name="connexion_failed">Mot de passe ou adresse mail incorrect</string>
+    <string name="togglemdp">toggle mdp visibility</string>
 </resources>

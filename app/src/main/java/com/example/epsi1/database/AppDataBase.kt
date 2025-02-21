@@ -9,7 +9,7 @@ import com.example.epsi1.model.AccountList
 import com.example.epsi1.model.User
 import com.example.epsi1.model.UserDao
 
-@Database(entities = arrayOf(User::class, AccountList::class), version = 1)
+@Database(entities = [User::class, AccountList::class], version = 1)
 
 abstract class AppDatabase: RoomDatabase() {
 

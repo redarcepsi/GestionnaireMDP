@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="8dp"
     android:layout_marginTop="8dp"
+    style="@style/CustomCardView"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
-    style="@style/CustomCardView">
+    app:cardElevation="4dp">
 
     <LinearLayout
+        android:id="@+id/carte"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:gravity="center_vertical"
-        android:id="@+id/carte">
+        tools:ignore="UseCompoundDrawables">
 
         <TextView
             android:id="@+id/tvSiteName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:text=""
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:gravity="center_vertical"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/ivCopyIcon"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:padding="4dp"
             android:background="?attr/selectableItemBackground"
             android:contentDescription="@string/copyicon"
+            android:padding="4dp"
             android:src="@drawable/twotone_file_copy_24"
-            app:tint="@color/black"/>
+            app:tint="@color/black" />
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
